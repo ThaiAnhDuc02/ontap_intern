@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <button id="btn__toggle">Click</button>
+    <div id="info">
+      <p>This is a paragraph with little content.</p>
+      <p>This is another small paragraph.</p>
+    </div>
+    <hr />
+    <button id="btn--fade">Click to fade</button>
+    <div id="block--fade">
+      <span>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five
+        centuries, but also the leap into electronic typesetting, remaining
+        essentially unchanged. It was popularised in the 1960s with the release
+        of Letraset sheets containing Lorem Ipsum passages, and more recently
+        with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum.
+      </span>
+    </div>
+    <hr />
+    <button id="btn--slide">Click to open slide</button>
+    <div class="block--slide">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet totam illum
+      sed voluptate eaque, perspiciatis dignissimos repellendus iste corrupti
+      doloribus eius temporibus impedit, aliquid rerum voluptatibus, eligendi
+      voluptatum possimus voluptatem.
+    </div>
+    <hr />
+    <button id="btn--animate">Start Animate</button>
+    <div
+      class="block--animate"
+      style="
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        position: absolute;
+      "
+    >
+      Animate block
+    </div>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("#info").hide();
+      // click button to open block info
+      $("#btn__toggle").click(function () {
+        $("#info").toggle();
+      });
+
+      $("#block--fade").hide();
+      // use fade toggle
+      $("#btn--fade").dblclick(function () {
+        $("#block--fade").fadeToggle("slow", function () {
+          alert("123");
+        });
+      });
+
+      // create a alert function
+      function alertFunction(state) {
+        alert("123");
+      }
+      function slideFunction(state) {
+        $(".block--slide").slideToggle(1000, function () {
+          alertFunction(state);
+        });
+      }
+      $(".block--slide").hide();
+      $("#btn--slide").click(() => slideFunction(this.state));
+
+      $("#btn--animate").click(function () {
+        $(".block--animate").animate({ left: "200px" });
+      });
+    });
+  </script>
+</html>
